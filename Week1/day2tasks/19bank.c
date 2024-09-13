@@ -1,11 +1,16 @@
 #include <stdio.h>
 
-int balance = 10000;
+int balance = 15000, pin = 2024;
 
 int main() {
-    // Bank
-    int user_input, amount;
-    printf("Welcome to XYZ Banking\nChoose option(1-3)\n1. Add fund/deposit\n2. withdraw funds\n3. Check Balance\n");
+    // Bank app
+    int user_input, amount, lockcode;
+    printf("Welcome to Nepal Youth Commercial Banking\nEnter Your Pin: ");
+    scanf("%d",&lockcode);
+
+    if (lockcode == pin){
+        
+    printf("\nChoose option(1-3)\n1. Add fund/deposit\n2. withdraw funds\n3. Check Balance\n");
     scanf("%d",&user_input);
     
     if (user_input == 1){
@@ -31,6 +36,10 @@ int main() {
     }else{
         printf("Invalid Option");
     }
+    }else{
+        printf("Invalid Pin Try Again!");
+    }
+    
     
 
     return 0;

@@ -5,7 +5,7 @@ int main(){
 
     retry:
     printf("Enter Pin: ");
-    scanf("%d",&attempts);
+    scanf("%d",&input);
 
     if (pin == input)
     {

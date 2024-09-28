@@ -16,6 +16,8 @@ int sum(int a){
     if(a == 0){
         return 1;
     }else{
+        // printf("%d",a);
         return a + sum(a-1);
+        // printf("%d mathi\n",a);
     }
 }

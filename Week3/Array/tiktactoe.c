@@ -95,7 +95,7 @@ int main()
                         count++;
                     }
                 }
-                printf("%d", count);
+                // printf("%d", count);
                 if (count == 0)
                 {
                     displayttt(ttt);

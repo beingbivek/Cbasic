@@ -9,119 +9,89 @@ void displayttt(char t[3][3]);
 int win(char t[3][3]);
 
 int main(){
-    int row,col,mainchoice,num,exchangeplayer = 1,gameover = 0,usednum[9]={11,11,11,11,11,11,11,11,11};
+    int row,exit = 0,winner,mainchoice,num,exchangeplayer = 1,gameover = 0,usednum[9]={11,11,11,11,11,11,11,11,11};
     char playerchoice,player2choice;
     char ttt[3][3]={"123","456","789"};
-    printf("Welcome to 3 * 3 TicTacToe Game - developed by Bivek\n");
-    printf("Main Menu\n1. with PC (Not available)\n2. with Player 2\n3. Exit\n: ");
-    scanf("%d",&mainchoice);
-    switch (mainchoice)
+    
+    while (exit != 1)
     {
-    case 1:
-        printf("Currently this mode is not available\n");
-        break;
-    case 2:
-        printf("You are Player 1\nYour friend is Player 2\n");
-        // while(playerchoice == "x" || playerchoice == "o")
-        // {
-            printf("\nPlayer 1 choose x or o (only small letters): ");
-            scanf(" %c",&playerchoice);
-        // }
-        if(playerchoice == 'x'){
-            player2choice = 'o';
-        }else{
-            player2choice = 'x';
-        }
-        printf("Player 1 choose %c so, Player 2 uses %c",playerchoice,player2choice);
-        printf("\nWhere do you want to start?\n");
-        while (gameover != 1)
+        printf("Welcome to 3 * 3 TicTacToe Game - developed by Bivek\n");
+        printf("Main Menu\n1. with PC (Not available)\n2. with Player 2\n3. Exit\n: ");
+        scanf("%d",&mainchoice);
+        switch (mainchoice)
         {
-            displayttt(ttt);
-            gameover = win(ttt);
-            printf("Player %d\n",exchangeplayer);
-            printf("Enter number: ");
-            scanf("%d",&num);
-            // To check the number is used again or not.
-            // while()
-            for(int i =0;i<9;i++){
-                if(usednum[i] == num){
-                    printf("Can't enter same number again!\n");
-                    //break
-                    break;
-                }else{
-                    if(usednum[i] == 11){
-                        usednum[i] = num;
+        case 1:
+            printf("Currently this mode is not available\n");
+            break;
+        case 2:
+            printf("You are Player 1\nYour friend is Player 2\n");
+            // while(playerchoice == "x" || playerchoice == "o")
+            // {
+                printf("\nPlayer 1 choose x or o (only small letters): ");
+                scanf(" %c",&playerchoice);
+            // }
+            if(playerchoice == 'x'){
+                player2choice = 'o';
+            }else{
+                player2choice = 'x';
+            }
+            printf("Player 1 choose %c so, Player 2 uses %c",playerchoice,player2choice);
+            printf("\nWhere do you want to start?\n");
+            while (gameover != 1)
+            {
+                // display ttt
+                displayttt(ttt);
+                printf("Player %d\n",exchangeplayer);
+                printf("Enter number: ");
+                scanf("%d",&num);
+                // To check the number is used again or not.
+                // while()
+                for(int i =0;i<9;i++){
+                    if(usednum[i] == num){
+                        printf("Can't enter same number again!\n");
+                        //break
                         break;
+                    }else{
+                        if(usednum[i] == 11){
+                            usednum[i] = num;
+                            break;
+                        }
                     }
                 }
-            }
 
-            // player exchange
-            if(exchangeplayer == 1){
-                ttt[3][3] = setvalue(ttt,playerchoice,num);
-                exchangeplayer = 2;
-            }else if (exchangeplayer == 2)
-            {
-                ttt[3][3] = setvalue(ttt,player2choice,num);
-                exchangeplayer = 1;
-            }else{
-                printf("error in player exchange");
+                // player exchange
+                if(exchangeplayer == 1){
+                    ttt[3][3] = setvalue(ttt,playerchoice,num);
+                    exchangeplayer = 2;
+                }else if (exchangeplayer == 2)
+                {
+                    ttt[3][3] = setvalue(ttt,player2choice,num);
+                    exchangeplayer = 1;
+                }else{
+                    printf("error in player exchange");
+                }
+                
+                
+                //win function
+                int wintest = win(ttt);
+                if(wintest == 1){
+                    displayttt(ttt);
+                    winner = exchangeplayer == 1 ? 2 : 1;
+                    printf("Game over, player %d won!",winner);
+                    gameover = win(ttt);
+                }
+                printf("%d \n",wintest);
             }
-            
-            
-            // for(int i = 0; i < 3; i++){
-            //     for(int j = 0; j <3; j++){
-            //         if(ttt[i][j] != num + '0'){
-            //             usedchar[i][j] = 
-            //         }
-            //     }
-            // }
-            // switch (num)
-            // {
-            // case 1:
-            //     ttt[0][0] = playerchoice;
-            //     break;
-            // case 2:
-            //     ttt[0][1] = playerchoice;
-            //     break;
-            // case 3:
-            //     ttt[0][2] = playerchoice;
-            //     break;
-            // case 4:
-            //     ttt[1][0] = playerchoice;
-            //     break;
-            // case 5:
-            //     ttt[1][1] = playerchoice;
-            //     break;
-            // case 6:
-            //     ttt[1][2] = playerchoice;
-            //     break;
-            // case 7:
-            //     ttt[2][0] = playerchoice;
-            //     break;
-            // case 8:
-            //     ttt[2][1] = playerchoice;
-            //     break;
-            // case 9:
-            //     ttt[2][2] = playerchoice;
-            //     break;
-            
-            // default:
-            //     printf("Invalid number, Try again (1-9)!\n");
-            //     break;
-            // }
-
+            break;
+        case 3:
+            printf("Exit");
+            exit = 1;
+            break;
+        
+        default:
+            printf("Invalid Selection, Try again!\n");
+            break;
         }
-
-
-        break;
-    case 3:
-        printf("Exit");
-        break;
-    
-    default:
-        printf("Invalid Selection, Try again!\n");
-        break;
     }
     // printf("1|2|3\n------\n4|5|6\n------\n7|8|9\n");
 }
@@ -175,10 +145,32 @@ void displayttt(char t[3][3]){
 
 int win(char t[3][3]){
     // win strategies;
-    // for(int i = 0; i < 3; i++){
-    //     for(int j = 0; j <3; j++){
-    //         printf(" %c | ",t[i][j]);
-    //     }
-    //     printf("\n---------------------\n");
-    // }
+    char row[3],col[3],dia[3];
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j <3; j++){
+            col[j] = t[i][j];
+            // printf(" %c | ",t[i][j]);
+            row[j] = t[j][i];
+        }
+        if(col[0] == col[1] && col[0] == col[2]){
+            return 1;
+            break;
+        }else if (row[0] == row[1] && col[0] == row[2])
+        {
+            return 1;
+            break;
+        }else if (t[1][1] == t[0][1] && t[1][1] == t[2][2] )
+        {
+            return 1;
+            break;
+        }else if (t[1][1] == t[0][2] && t[1][1] == t[2][0] )
+        {
+            return 1;
+            break;
+        }else{
+            return 0;
+            break;
+        }        
+    }
+    return 0;
 }

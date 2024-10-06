@@ -202,7 +202,7 @@ int win(char t[3][3])
             return 1;
             break;
         }
-        else if (t[1][1] == t[0][1] && t[1][1] == t[2][2])
+        else if (t[1][1] == t[0][0] && t[1][1] == t[2][2])
         {
             return 1;
             break;

@@ -63,9 +63,9 @@ int main()
                     }
                     if (usednum[i] == 11)
                     {
-                        printf("\n%d,%d,%d\n", i, usednum[i], num);
+                        // printf("\n%d,%d,%d\n", i, usednum[i], num);
                         usednum[i] = num;
-                        printf("\n%d,%d,%d\n", i, usednum[i], num);
+                        // printf("\n%d,%d,%d\n", i, usednum[i], num);
                         break;
                     }
                 }
@@ -98,7 +98,8 @@ int main()
                 printf("%d", count);
                 if (count == 0)
                 {
-                    printf("Game is draw! Try again!");
+                    displayttt(ttt);
+                    printf("Game is draw! Try again!\n");
                     gameover = 1;
                     continue;
                 }
@@ -109,10 +110,10 @@ int main()
                 {
                     displayttt(ttt);
                     winner = exchangeplayer == 1 ? 2 : 1;
-                    printf("Game over, player %d won!", winner);
+                    printf("Game over, player %d won!\n", winner);
                     gameover = win(ttt);
                 }
-                printf("%d \n", wintest);
+                // printf("%d \n", wintest);
             }
             break;
         case 3:
